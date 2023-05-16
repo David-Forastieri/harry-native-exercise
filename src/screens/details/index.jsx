@@ -3,24 +3,21 @@ import React, { useEffect, useState } from 'react'
 import Card from '../../components/card'
 import styles from './styles'
 
-const CharDetail = ({ characters, characterId, viewDetail }) => {
+const CharDetail = ({ route }) => {
 
   const [characterSelected, setCharacterSelected] = useState([])
 
+  const { id, characters } = route.params
+
   useEffect(() => {
     if (characterSelected.length < 1) {
-      setCharacterSelected(characters.filter(char => char.id === characterId))
+      setCharacterSelected(characters.filter(char => char.id === id))
     }
     return () => setCharacterSelected([])
-  }, [characterId])
+  }, [id])
 
   return (
-    <>
-      <View>
-        <TouchableOpacity style={styles.buttonBack} onPress={() => viewDetail(false)}>
-          <Text style={styles.backIcon}>{'<-'}</Text>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.container}>
       {characterSelected[0] &&
         <Card>
           <Image style={styles.image} source={{
@@ -31,7 +28,7 @@ const CharDetail = ({ characters, characterId, viewDetail }) => {
           <Text style={styles.textList}>House:{characterSelected[0].house}</Text>
         </Card>
       }
-    </>
+    </View>
   )
 }
 

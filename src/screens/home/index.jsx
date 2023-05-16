@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import List from '../../components/list'
 import styles from './styles'
-import CharDetail from '../details'
 
-const Home = () => {
+const Home = ({ navigation }) => {
 
   const [characters, setCharacters] = useState([])
-  const [characterId, setCharacterId] = useState('')
-  const [viewDetail, setViewDetail] = useState(false)
 
   useEffect(() => {
     fetch("https://hp-api.onrender.com/api/characters")
@@ -16,17 +13,9 @@ const Home = () => {
       .then(data => setCharacters(data.slice(0, 15)))
   }, [characters.length])
 
-  const charSelected = id => {
-    setCharacterId(id)
-    setViewDetail(true)
-  }
-
   return (
     <View style={styles.homeContainer}>
-      {viewDetail ?
-        <CharDetail characters={characters} characterId={characterId} viewDetail={setViewDetail} />
-        : <List characters={characters} charSelected={charSelected} />
-      }
+      <List characters={characters} navigation={navigation} />
     </View>
   )
 }

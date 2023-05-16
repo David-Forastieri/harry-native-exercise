@@ -1,8 +1,8 @@
 //import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { useFonts } from 'expo-font'
-import Home from './src/screens/home';
 import Header from './src/components/header';
+import ShopNavigator from './src/navigation/ShopNavigator';
 
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header extraStyles={styles.fontStyle} />
-      <Home />
+      <ShopNavigator />
     </View>
   );
 }

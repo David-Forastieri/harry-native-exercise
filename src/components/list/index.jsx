@@ -3,11 +3,15 @@ import React from 'react'
 import Card from '../card'
 import styles from './styles'
 
-const List = ({ characters, charSelected }) => {
+const List = ({ characters, navigation }) => {
 
   const renderChar = ({ item }) => {
     return (
-      <TouchableOpacity onPress={() => charSelected(item.id)}>
+      <TouchableOpacity onPress={() => navigation.navigate('Detail',
+        {
+          id: item.id,
+          characters: characters
+        })}>
         <Card>
           <Image style={styles.image} source={{
             uri: item.image,
