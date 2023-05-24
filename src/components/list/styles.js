@@ -2,6 +2,11 @@ import { StyleSheet } from "react-native";
 import colors from "../../constants/theme";
 
 const styles = StyleSheet.create({
+  listContainer: {
+    flex: 1,
+    backgroundColor: colors.primary,
+    alignItems: "center"
+  },
   image: {
     height: 200,
     width: 150,

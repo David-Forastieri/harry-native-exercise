@@ -2,8 +2,8 @@
 import { StyleSheet, View } from 'react-native';
 import { useFonts } from 'expo-font'
 import Header from './src/components/header';
-import ShopNavigator from './src/navigation/ShopNavigator';
-
+import { NavigationContainer } from '@react-navigation/native'
+import BotomTabsNavigator from './src/navigation/BottomTabNavigator/BotomTabsNavigator';
 
 export default function App() {
 
@@ -18,7 +18,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header extraStyles={styles.fontStyle} />
-      <ShopNavigator />
+      <NavigationContainer>
+        <BotomTabsNavigator />
+      </NavigationContainer>
     </View>
   );
 }
