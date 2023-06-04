@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import List from '../../components/list'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllCharacters } from '../../Redux/actions'
 import styles from './styles'
 
 const Home = ({ navigation }) => {
 
+  const dispatch = useDispatch()
+  const AllCharacters = useSelector(state => state.allCharacters)
   const [characters, setCharacters] = useState([])
 
   useEffect(() => {
-    fetch("https://hp-api.onrender.com/api/characters")
-      .then(res => res.json())
-      .then(data => setCharacters(data.slice(0, 15)))
-  }, [characters.length])
+    if (characters.length === 0) {
+      dispatch(getAllCharacters())
+    } setCharacters(AllCharacters)
+  }, [AllCharacters])
 
   return (
     <View style={styles.homeContainer}>

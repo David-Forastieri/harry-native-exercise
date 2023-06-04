@@ -2,28 +2,27 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Card from '../../components/card'
 import styles from './styles'
+import { useSelector } from 'react-redux'
 
-const CharDetail = ({ route }) => {
+const CharDetail = () => {
 
-  const [characterSelected, setCharacterSelected] = useState([])
-
-  const { id, characters } = route.params
+  const CharacterSelected = useSelector(state => state.selectedCharacter)
+  const [characterDetail, setCharacterDetail] = useState({})
 
   useEffect(() => {
-    setCharacterSelected(characters.filter(char => char.id === id))
-    return () => setCharacterSelected([])
-  }, [id])
+    setCharacterDetail(CharacterSelected)
+  }, [CharacterSelected])
 
   return (
     <View style={styles.container}>
-      {characterSelected[0] &&
+      {characterDetail &&
         <Card>
           <Image style={styles.image} source={{
-            uri: characterSelected[0].image || "https://www.nicepng.com/png/detail/798-7984274_https-profile-pic-no-photo-available.png"
+            uri: characterDetail.image || "https://www.nicepng.com/png/detail/798-7984274_https-profile-pic-no-photo-available.png"
           }} />
-          <Text style={styles.textList}>Name:{characterSelected[0].name || "not info"}</Text>
-          <Text style={styles.textList}>Actor:{characterSelected[0].actor || "not info"}</Text>
-          <Text style={styles.textList}>House:{characterSelected[0].house || "not info"}</Text>
+          <Text style={styles.textList}>Name:{characterDetail.name || "not info"}</Text>
+          <Text style={styles.textList}>Actor:{characterDetail.actor || "not info"}</Text>
+          <Text style={styles.textList}>House:{characterDetail.house || "not info"}</Text>
         </Card>
       }
     </View>

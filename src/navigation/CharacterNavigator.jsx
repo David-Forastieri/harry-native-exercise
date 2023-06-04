@@ -8,7 +8,7 @@ const CharacterNavigator = () => {
   const Stack = createNativeStackNavigator()
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Home' component={Home} options={{ title: 'Character List' }} />
       <Stack.Screen name='Detail' component={CharDetail} options={{ title: 'Character Detail' }} />
     </Stack.Navigator>

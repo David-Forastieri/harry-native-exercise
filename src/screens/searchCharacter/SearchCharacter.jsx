@@ -3,22 +3,20 @@ import React, { useState, useEffect } from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import styles from './styles';
 import List from '../../components/list';
+import { useSelector } from 'react-redux';
 
 const SearchCharacter = ({ navigation }) => {
 
+  const AllCharacters = useSelector(state => state.allCharacters)
   const [value, setValue] = useState("")
-  const [allCharacters, setAllCharacters] = useState([])
   const [charFound, setCharfound] = useState([])
 
   useEffect(() => {
-    fetch("https://hp-api.onrender.com/api/characters")
-      .then(res => res.json())
-      .then(data => setAllCharacters(data))
-  }, [])
+  }, [AllCharacters])
 
   const handleInput = (text) => {
     setValue(text)
-    let charSearch = allCharacters.filter(ch => ch.name.toLowerCase().indexOf(text.toLowerCase()) !== -1)
+    let charSearch = AllCharacters.filter(ch => ch.name.toLowerCase().indexOf(text.toLowerCase()) !== -1)
     setCharfound(charSearch)
   }
 

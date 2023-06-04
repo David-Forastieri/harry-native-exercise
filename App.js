@@ -4,6 +4,8 @@ import { useFonts } from 'expo-font'
 import Header from './src/components/header';
 import { NavigationContainer } from '@react-navigation/native'
 import BotomTabsNavigator from './src/navigation/BottomTabNavigator/BotomTabsNavigator';
+import { Provider } from 'react-redux';
+import store from './src/Redux/store';
 
 export default function App() {
 
@@ -16,12 +18,14 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Header extraStyles={styles.fontStyle} />
-      <NavigationContainer>
-        <BotomTabsNavigator />
-      </NavigationContainer>
-    </View>
+    <Provider store={store} >
+      <View style={styles.container}>
+        <Header extraStyles={styles.fontStyle} />
+        <NavigationContainer>
+          <BotomTabsNavigator />
+        </NavigationContainer>
+      </View>
+    </Provider>
   );
 }
 

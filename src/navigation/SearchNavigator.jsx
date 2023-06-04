@@ -5,7 +5,7 @@ const Stack = createNativeStackNavigator()
 
 export default SearchNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }} >
       <Stack.Screen name="SearchCharacter" component={SearchCharacter} />
     </Stack.Navigator>
   )
