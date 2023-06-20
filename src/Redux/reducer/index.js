@@ -1,8 +1,9 @@
-import { GET_API_CHARACTERS, SELEC_CHAR_ID } from "../actions";
+import PersonsChar from "../../model";
+import { ADD_CHARACTER, GET_API_CHARACTERS, SELEC_CHAR_ID } from "../actions";
 
 const initialState = {
   allCharacters: [],
-  selectedCharacter: {}
+  selectedCharacter: {},
 }
 
 export const rootReducer = (state = initialState, action) => {
@@ -18,6 +19,15 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedCharacter: charac[0]
+      }
+
+    case ADD_CHARACTER:
+      const id = state.allCharacters.length + 1
+      const { name, actor, house } = action.payload.data
+      const newCharacter = new PersonsChar(id, name, actor, house, action.payload.image)
+      return {
+        ...state,
+        allCharacters: [...state.allCharacters, newCharacter]
       }
 
     default:

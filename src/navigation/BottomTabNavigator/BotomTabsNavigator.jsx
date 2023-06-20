@@ -4,6 +4,7 @@ import SearchNavigator from '../SearchNavigator'
 import CharacterNavigator from '../CharacterNavigator'
 import { Ionicons } from '@expo/vector-icons';
 import styles from './styles'
+import AddCharacter from '../../screens/addCharacter';
 
 const BottomTabs = createBottomTabNavigator()
 
@@ -17,6 +18,15 @@ const BotomTabsNavigator = () => {
           </View>
         )
       }} />
+      <BottomTabs.Screen name="AddCharacter" component={AddCharacter} options={{
+        tabBarIcon: () => (
+          <View>
+            <Ionicons name='ios-person-add' size={24} color="white" />
+          </View>
+        )
+      }}
+
+      />
       <BottomTabs.Screen name="SearchNavigator" component={SearchNavigator} options={{
         tabBarIcon: () => (
           <View>

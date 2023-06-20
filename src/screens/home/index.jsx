@@ -9,13 +9,14 @@ const Home = ({ navigation }) => {
 
   const dispatch = useDispatch()
   const AllCharacters = useSelector(state => state.allCharacters)
+  const AddCharacters = useSelector(state => state.newCharacters)
   const [characters, setCharacters] = useState([])
 
   useEffect(() => {
     if (characters.length === 0) {
       dispatch(getAllCharacters())
     } setCharacters(AllCharacters)
-  }, [AllCharacters])
+  }, [AllCharacters, characters])
 
   return (
     <View style={styles.homeContainer}>
